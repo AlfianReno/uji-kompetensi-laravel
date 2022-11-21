@@ -71,9 +71,6 @@
                         <div class="short-desc">
                             {!! $product->short_description !!}
                         </div>
-                        <div class="wrap-social">
-                            <a class="link-socail" href="#"><img src="{{ asset('assets/images/social-list.png') }}" alt=""></a>
-                        </div>
                         @if ($product->sale_price > 0 && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
                             <div class="wrap-price">
                                 <span class="product-price">${{$product->sale_price}}</span>
@@ -118,10 +115,6 @@
                             @else
                                 <a href="#" class="btn add-to-cart" wire:click.prevent="store({{$product->id}}, '{{$product->name}}', {{$product->regular_price}})">Add to Cart</a>
                             @endif
-                            <div class="wrap-btn">
-                                <a href="#" class="btn btn-compare">Add Compare</a>
-                                <a href="#" class="btn btn-wishlist">Add Wishlist</a>
-                            </div>
                         </div>
                     </div>
                     <div class="advance-info">
@@ -136,18 +129,17 @@
                             </div>
                             <div class="tab-content-item " id="add_infomation">
                                 <table class="shop_attributes">
-                                    <tbody>
-                                        <tr>
-                                            <th>Weight</th><td class="product_weight">1 kg</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Dimensions</th><td class="product_dimensions">12 x 15 x 23 cm</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Color</th><td><p>Black, Blue, Grey, Violet, Yellow</p></td>
-                                        </tr>
-                                    </tbody>
+                                    @foreach ($product->attributeValues->unique('product_attribute_id') as $av)
+                                        @foreach ($av->productAttribute->attributeValues->where('product_id',$product->id) as $pav)
+                                            <tbody>
+                                                <tr>
+                                                    <th>{{$av->productAttribute->name}}</th><td>{{$pav->value}}</td>
+                                                </tr>
+                                            </tbody>
+                                        @endforeach
+                                    @endforeach
                                 </table>
+
                             </div>
                             <div class="tab-content-item " id="review">
 
@@ -173,7 +165,7 @@
                                         }
                                     </style>
                                     <div id="comments">
-                                        <h2 class="woocommerce-Reviews-title">{{$product->orderItems->where('rstatus',1)->count()}}review for <span>{{$product->name}}</span></h2>
+                                        <h2 class="woocommerce-Reviews-title">{{$product->orderItems->where('rstatus',1)->count()}} review for <span>{{$product->name}}</span></h2>
                                         <ol class="commentlist">
                                             @foreach ($product->orderItems->where('rstatus',1) as $orderItem)
                                             <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">

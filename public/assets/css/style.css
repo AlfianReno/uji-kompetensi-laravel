@@ -1004,6 +1004,7 @@ li.menu-item .nav-label.sale-label::before{
 }
 .wrap-main-slide .slide-carousel .slide-info{
     position: absolute;
+
 }
 .wrap-main-slide .slide-carousel .slide-info.slide-1{
     top: 30%;
@@ -1039,20 +1040,20 @@ li.menu-item .nav-label.sale-label::before{
     margin-left: -2px;
 }
 .wrap-main-slide .slide-1 .f-title b{
-    color: #222222;
+    color: #ffffff;
     font-size: 45px;
     font-weight: 700;
 }
 .wrap-main-slide .slide-1 .subtitle{
     font-size: 18px;
     line-height: 24px;
-    color: #555555;
+    color: #ffffff;
     display: inline-block;
 }
 .wrap-main-slide .slide-1 .sale-info{
     font-size: 16px;
     line-height: 24px;
-    color: #888888;
+    color: #ffffff;
     margin-top: 6px;
     margin-bottom: 19px;
 }
@@ -3352,6 +3353,7 @@ vertical-align: top;
     width: 100%;
     display: block;
     margin: 0 auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .aboutus-info.style-small-left .box-title{
     display: block;
@@ -3363,6 +3365,7 @@ vertical-align: top;
     margin-top: 15px;
     font-weight: 700;
     text-transform: uppercase;
+
 }
 .aboutus-info.style-small-left .txt-content{
     font-size: 14px;
@@ -3371,6 +3374,7 @@ vertical-align: top;
     margin: 0;
     text-align: left;
     margin-bottom: 52px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .aboutus-info.style-small-left .list-showups{
     display: inline-block;
@@ -3451,14 +3455,14 @@ vertical-align: top;
     display: inline-block;
     border: 1px solid #e6e6e6;
     width: 100%;
-    background-color: #f5f5f5;
+    background-color: #ff2832;
     padding: 25px 3px 24px 3px;
     margin-bottom: 30px;
 }
 .aboutus-box-score .box-score-title{
     font-size: 40px;
     line-height: 30px;
-    color: #333333;
+    color: #ffffff;
     font-weight: 700;
     text-transform: uppercase;
     display: block;
@@ -3467,7 +3471,7 @@ vertical-align: top;
 .aboutus-box-score .sub-title{
     font-size: 16px;
     line-height: 24px;
-    color: #333333;
+    color: #ffffff;
     font-weight: 600;
     text-transform: uppercase;
     display: block;
@@ -3478,7 +3482,7 @@ vertical-align: top;
 .aboutus-box-score .desc{
     font-size: 14px;
     line-height: 24px;
-    color: #666666;
+    color: #ffc2c4;
     text-align: center;
     margin: 0;
 }
@@ -4465,7 +4469,7 @@ article.single-post blockquote p:last-child::after{
     margin-right: 6px;
 }
 .wrap-product-detail .detail-info .wrap-btn .btn.btn-wishlist{
-    float: right;
+    float: left;
 }
 .wrap-product-detail .detail-info .wrap-btn .btn.btn-wishlist::before{
     content: "\f004";
@@ -6365,6 +6369,7 @@ background-color: #888888;
     .header-nav-section,
     .primary-nav-section{
         display: none;
+
     }
     .nav-section{
         display: none;
@@ -7212,4 +7217,11 @@ svg{
 
 .wrap-pagination-info .rounded-r-md{
     margin-left: 5px;
+}
+
+.whatsapp-chat{
+    bottom: 120px;
+    right: 24px;
+    position: fixed;
+    justify-items: right;
 }

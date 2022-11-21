@@ -85,6 +85,10 @@
 										</label>
 										<a class="link-function left-position" href="{{route('password.request')}}" title="Forgotten password?">Forgotten password?</a>
 									</fieldset>
+                                    <fieldset class="wrap-input">
+                                        {!! NoCaptcha::renderJs('en', false, 'onCallback') !!}
+                                        {!! NoCaptcha::display() !!}
+                                    </fieldset>
 									<input type="submit" class="btn btn-submit" value="Login" name="submit">
 								</form>
 							</div>
@@ -97,3 +101,10 @@
 
 	</main>
 </x-base-layout>
+
+<script type="text/javascript">
+    var onCallback = function () {
+        alert('Complete captcha to continue register!');
+    }
+</script>
+

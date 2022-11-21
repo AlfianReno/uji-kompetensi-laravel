@@ -5,13 +5,17 @@ use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\ShopComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\SearchComponent;
+use App\Http\Livewire\AboutUsComponent;
 use App\Http\Livewire\ContactComponent;
 use App\Http\Livewire\DetailsComponent;
 use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\CheckoutComponent;
 use App\Http\Livewire\ThankyouComponent;
 use App\Http\Livewire\WishlistComponent;
+use App\Http\Livewire\ReturnPolicyComponent;
+use App\Http\Livewire\PrivacyPolicyComponent;
 use App\Http\Livewire\Admin\AdminSaleComponent;
+use App\Http\Livewire\TermsConditionsComponent;
 use App\Http\Livewire\User\UserOrdersComponent;
 use App\Http\Livewire\User\UserReviewComponent;
 use App\Http\Livewire\Admin\AdminOrderComponent;
@@ -57,7 +61,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/', HomeComponent::class);
+Route::get('/about-us', AboutUsComponent::class)->name('about-us');
 Route::get('/shop', ShopComponent::class)->name('product.shop');
 Route::get('/cart', CartComponent::class)->name('product.cart');
 Route::get('/checkout', CheckoutComponent::class)->name('checkout');
@@ -67,6 +73,9 @@ Route::get('/search', SearchComponent::class)->name('product.search');
 Route::get('/wishlist',WishlistComponent::class)->name('product.wishlist');
 Route::get('/thank-you', ThankyouComponent::class)->name('thankyou');
 Route::get('/contact-us',ContactComponent::class)->name('contact');
+Route::get('/privacy-policy',PrivacyPolicyComponent::class)->name('privacy-policy');
+Route::get('/terms-conditions',TermsConditionsComponent::class)->name('terms-conditions');
+Route::get('/return-policy',ReturnPolicyComponent::class)->name('return-policy');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');

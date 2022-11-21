@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserDashboardComponent extends Component
 {
+    public function verifyMyAccount()
+    {
+        if(!Auth::check()){
+            return redirect()->route('login');
+        }
+    }
     public function render()
     {
         $orders = Order::orderBy('created_at','DESC')->where('user_id',Auth::user()->id)->get()->take(10);
@@ -15,6 +21,7 @@ class UserDashboardComponent extends Component
         $totalPurchase = Order::where('status','!=','canceled')->where('user_id',Auth::user()->id)->count();
         $totalDelivered = Order::where('status','delivered')->where('user_id',Auth::user()->id)->count();
         $totalCanceled = Order::where('status','canceled')->where('user_id',Auth::user()->id)->count();
+        $this->verifyMyAccount();
         return view('livewire.user.user-dashboard-component',['orders'=>$orders,'totalCost'=>$totalCost,'totalPurchase'=>$totalPurchase,'totalDelivered'=>$totalDelivered,'totalCanceled'=>$totalCanceled])->layout('layouts.base');
     }
 }

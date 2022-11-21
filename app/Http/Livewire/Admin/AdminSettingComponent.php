@@ -40,7 +40,6 @@ class AdminSettingComponent extends Component
         $this->validateOnly($fields,[
             'email' => 'required|email',
             'phone' => 'required',
-            'phone2' => 'required',
             'address' => 'required',
             'map' => 'required',
             'twitter' => 'required',
@@ -56,7 +55,6 @@ class AdminSettingComponent extends Component
         $this->validate([
             'email' => 'required|email',
             'phone' => 'required',
-            'phone2' => 'required',
             'address' => 'required',
             'map' => 'required',
             'twitter' => 'required',

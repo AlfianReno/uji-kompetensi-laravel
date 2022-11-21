@@ -44,7 +44,7 @@
                                         <p class="text-danger">{{$message}}</p>
                                     @enderror
 
-									<input type="submit" name="ok" value="Submit" >
+									<input type="submit" name="ok" value="Submit">
 
 								</form>
 							</div>
@@ -80,6 +80,12 @@
 											<p>{{$setting->address}}<br /></p>
 										</div>
 									</div>
+
+                                    <div class="whatsapp-chat">
+                                        <a href="https://wa.me/+6285336164385?text=Hi,%20I'm%20interested%20in%20your%20product!" target="_blank">
+                                            <img src="{{asset('assets/images/wa-logo.png')}}" alt="whatsapp-logo" width="60px" height="60px">
+                                        </a>
+                                    </div>
 
 								</div>
 							</div>

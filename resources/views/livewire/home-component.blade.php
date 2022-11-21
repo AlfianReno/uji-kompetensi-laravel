@@ -24,12 +24,12 @@
         <div class="wrap-banner style-twin-default">
             <div class="banner-item">
                 <a href="#" class="link-banner banner-effect-1">
-                    <figure><img src="{{ asset('assets/images/home-1-banner-1.jpg') }}" alt="" width="580" height="190"></figure>
+                    <figure><img src="{{ asset('assets/images/christmas2.png') }}" alt="" width="675" height="243"></figure>
                 </a>
             </div>
             <div class="banner-item">
                 <a href="#" class="link-banner banner-effect-1">
-                    <figure><img src="{{ asset('assets/images/home-1-banner-2.jpg') }}" alt="" width="580" height="190"></figure>
+                    <figure><img src="{{ asset('assets/images/istockphoto-1171326350-612x612.jpg') }}" alt="" width="675" height="243"></figure>
                 </a>
             </div>
         </div>
@@ -65,7 +65,7 @@
             <h3 class="title-box">Latest Products</h3>
             <div class="wrap-top-banner">
                 <a href="#" class="link-banner banner-effect-2">
-                    <figure><img src="{{ asset('assets/images/digital-electronic-banner.jpg') }}" width="1170" height="240" alt=""></figure>
+                    <figure><img src="{{ asset('assets/images/latest3.jpg') }}" width="1172" height="240" alt=""></figure>
                 </a>
             </div>
             <div class="wrap-products">
@@ -97,8 +97,8 @@
         <div class="wrap-show-advance-info-box style-1">
             <h3 class="title-box">Product Categories</h3>
             <div class="wrap-top-banner">
-                <a href="#" class="link-banner banner-effect-2">
-                    <figure><img src="{{ asset('assets/images/fashion-accesories-banner.jpg') }}" width="1170" height="240" alt=""></figure>
+                <a href="/product-category/smart-tv" class="link-banner banner-effect-2">
+                    <figure><img src="{{ asset('assets/images/smart-led-tv-banner.jpg') }}" width="1170" height="240" alt=""></figure>
                 </a>
             </div>
             <div class="wrap-products">

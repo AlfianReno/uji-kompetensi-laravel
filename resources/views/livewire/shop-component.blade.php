@@ -14,7 +14,7 @@
 
                 <div class="banner-shop">
                     <a href="#" class="banner-link">
-                        <figure><img src="{{ asset('assets/images/shop-banner.jpg') }}" alt=""></figure>
+                        <figure><img src="{{ asset('assets/images/shopchristmasbanner.png') }}" alt=""></figure>
                     </a>
                 </div>
 
@@ -108,6 +108,7 @@
                     </ul>
                 </div>
 
+
                 <div class="wrap-pagination-info">
                     {{$products->links()}}
                     {{-- <ul class="page-numbers">
@@ -146,21 +147,17 @@
 
                 <div class="widget mercado-widget filter-widget brand-widget">
                     <h2 class="widget-title">Brand</h2>
+                    @foreach ($categories as $category)
                     <div class="widget-content">
-                        <ul class="list-style vertical-list list-limited" data-show="6">
-                            <li class="list-item"><a class="filter-link active" href="#">Fashion Clothings</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Laptop Batteries</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Printer & Ink</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li>
-                            <li class="list-item default-hiden"><a class="filter-link " href="#">Printer & Ink</a></li>
-                            <li class="list-item default-hiden"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
-                            <li class="list-item default-hiden"><a class="filter-link " href="#">Sound & Speaker</a></li>
-                            <li class="list-item default-hiden"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li>
-                            <li class="list-item"><a data-label='Show less<i class="fa fa-angle-up" aria-hidden="true"></i>' class="btn-control control-show-more" href="#">Show more<i class="fa fa-angle-down" aria-hidden="true"></i></a></li>
+                        <ul class="list-style list-limited" data-show="6">
+                            @foreach ($category->subCategories as $scategory)
+                                <li class="category-item">
+                                    <a href="{{route('product.category',['category_slug'=>$category->slug,'scategory_slug'=>$scategory->slug])}}" class="cat-link">{{$scategory->name}}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
+                    @endforeach
                 </div><!-- brand widget-->
 
                 <div class="widget mercado-widget filter-widget price-filter">
@@ -171,93 +168,34 @@
                 </div><!-- Price-->
 
                 <div class="widget mercado-widget filter-widget">
-                    <h2 class="widget-title">Color</h2>
                     <div class="widget-content">
-                        <ul class="list-style vertical-list has-count-index">
-                            <li class="list-item"><a class="filter-link " href="#">Red <span>(217)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Yellow <span>(179)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Black <span>(79)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Blue <span>(283)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Grey <span>(116)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Pink <span>(29)</span></a></li>
-                        </ul>
-                    </div>
-                </div><!-- Color -->
-
-                <div class="widget mercado-widget filter-widget">
-                    <h2 class="widget-title">Size</h2>
-                    <div class="widget-content">
-                        <ul class="list-style inline-round ">
-                            <li class="list-item"><a class="filter-link active" href="#">s</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">M</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">l</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">xl</a></li>
-                        </ul>
                         <div class="widget-banner">
                             <figure><img src="{{ asset('assets/images/size-banner-widget.jpg') }}" width="270" height="331" alt=""></figure>
                         </div>
                     </div>
-                </div><!-- Size -->
+                </div>
 
                 <div class="widget mercado-widget widget-product">
                     <h2 class="widget-title">Popular Products</h2>
                     <div class="widget-content">
                         <ul class="products">
+                            @foreach ($popular_products as $p_product)
                             <li class="product-item">
                                 <div class="product product-widget-style">
                                     <div class="thumbnnail">
-                                        <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                            <figure><img src="{{ asset('assets/images/products/digital_01.jpg') }}" alt=""></figure>
+                                        <a href="{{route('product.details',['slug'=>$p_product->slug])}}" title="{{$p_product->name}}">
+                                            <figure><img src="{{ asset('assets/images/products/') }}/{{$p_product->image}}" alt="{{$p_product->name}}"></figure>
                                         </a>
                                     </div>
                                     <div class="product-info">
-                                        <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                        <div class="wrap-price"><span class="product-price">$168.00</span></div>
+                                        <a href="{{route('product.details',['slug'=>$p_product->slug])}}" class="product-name"><span>{{$p_product->name}}</span></a>
+                                        <div class="wrap-price"><span class="product-price">${{$p_product->regular_price}}</span></div>
                                     </div>
                                 </div>
                             </li>
+                            @endforeach
 
-                            <li class="product-item">
-                                <div class="product product-widget-style">
-                                    <div class="thumbnnail">
-                                        <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                            <figure><img src="{{ asset('assets/images/products/digital_17.jpg') }}" alt=""></figure>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                        <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                    </div>
-                                </div>
-                            </li>
 
-                            <li class="product-item">
-                                <div class="product product-widget-style">
-                                    <div class="thumbnnail">
-                                        <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                            <figure><img src="{{ asset('assets/images/products/digital_18.jpg') }}" alt=""></figure>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                        <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="product-item">
-                                <div class="product product-widget-style">
-                                    <div class="thumbnnail">
-                                        <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                            <figure><img src="{{ asset('assets/images/products/digital_20.jpg') }}" alt=""></figure>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                        <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                    </div>
-                                </div>
-                            </li>
 
                         </ul>
                     </div>

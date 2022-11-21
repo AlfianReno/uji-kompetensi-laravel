@@ -4,8 +4,10 @@ namespace App\Http\Livewire;
 
 use Cart;
 use App\Models\Product;
+use App\Models\Setting;
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\Subcategory;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 
@@ -67,6 +69,7 @@ class ShopComponent extends Component
             Cart::instance('wishlist')->store(Auth::user()->email);
         }
 
-        return view('livewire.shop-component',['products'=> $products, 'categories'=>$categories])->layout('layouts.base');
+        $popular_products = Product::inRandomOrder()->limit(4)->get();
+        return view('livewire.shop-component',['products'=> $products, 'categories'=>$categories,'popular_products'=>$popular_products])->layout('layouts.base');
     }
 }

@@ -16,7 +16,7 @@ class HomeComponent extends Component
     public function render()
     {
         $sliders = HomeSlider::where('status',1)->get();
-        $lproducts = Product::orderBy('created_at','DESC')->get()->take(8);
+        $lproducts = Product::orderBy('created_at','ASC')->get()->take(8);
         $category = HomeCategory::find(1);
         $cats = explode(',',$category->sel_categories);
         $categories = Category::whereIn('id',$cats)->get();

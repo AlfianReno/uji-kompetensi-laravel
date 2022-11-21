@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use Cart;
+use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class WishlistComponent extends Component
 {
@@ -27,6 +28,7 @@ class WishlistComponent extends Component
         $this->emitTo('cart-count-component','refreshComponent');
 
     }
+
 
     public function render()
     {

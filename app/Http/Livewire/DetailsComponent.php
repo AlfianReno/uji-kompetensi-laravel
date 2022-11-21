@@ -6,6 +6,7 @@ use Cart;
 use App\Models\Sale;
 use App\Models\Product;
 use Livewire\Component;
+use App\Models\AttributeValue;
 
 class DetailsComponent extends Component
 {

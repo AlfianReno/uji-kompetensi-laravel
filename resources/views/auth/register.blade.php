@@ -84,7 +84,16 @@
 										<label for="frm-reg-cfpass">Confirm Password *</label>
 										<input type="password" id="frm-reg-cfpass" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
 									</fieldset>
-									<input type="submit" class="btn btn-sign" value="Register" name="register">
+                                    <fieldset style="margin-top: 5px;">
+                                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{route('login')}}">
+                                            {{ __('Already have an account? Sign in') }}
+                                        </a>
+                                    </fieldset>
+                                    <fieldset class="wrap-input" style="margin-top: 10px;">
+                                        {!! NoCaptcha::renderJs('en', false, 'onCallback') !!}
+                                        {!! NoCaptcha::display() !!}
+                                    </fieldset>
+                                    <input type="submit" class="btn btn-sign" value="Register" name="register">
 								</form>
 							</div>
 						</div>
@@ -95,4 +104,11 @@
 		</div><!--end container-->
 
 	</main>
+
 </x-base-layout>
+
+<script type="text/javascript">
+    var onCallback = function () {
+        alert('Complete captcha to continue register!');
+    }
+</script>

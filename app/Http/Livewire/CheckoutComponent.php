@@ -8,7 +8,9 @@ use App\Models\Order;
 use App\Mail\OrderMail;
 use Livewire\Component;
 use App\Models\Shipping;
+use App\Models\Countries;
 use App\Models\OrderItem;
+use App\Models\Expeditions;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -47,6 +49,9 @@ class CheckoutComponent extends Component
     public $exp_month;
     public $exp_year;
     public $cvc;
+
+    public $select_expedition;
+    public $shipping_charge;
 
     public function updated($fields)
     {
@@ -89,6 +94,19 @@ class CheckoutComponent extends Component
     }
 
 
+    public function setShippingCharge(){
+        if(isset($this->country)) {
+            $country_l = Countries::where('distance_km', $this->country)->first()->distance_km;
+            $cost_km = Expeditions::where('cost_perkm', $this->select_expedition)->first()->cost_perkm;
+            $this->shipping_charge = $cost_km * $country_l;
+        }else{
+            session()->flash('message','Select your the country first!');
+        }
+    }
+
+
+
+
     public function placeOrder()
     {
         $this->validate([
@@ -113,12 +131,15 @@ class CheckoutComponent extends Component
             ]);
         }
 
+        $selected_country = Countries::where('distance_km', $this->country)->first()->country;
+        $exp_id = Expeditions::where('cost_perkm', $this->select_expedition)->first()->id;
+        $exp_agent = Expeditions::where('cost_perkm', $this->select_expedition)->first()->name;
         $order = new Order();
         $order->user_id = Auth::user()->id;
         $order->subtotal = session()->get('checkout')['subtotal'];
         $order->discount = session()->get('checkout')['discount'];
         $order->tax = session()->get('checkout')['tax'];
-        $order->total = session()->get('checkout')['total'];
+        $order->total = session()->get('checkout')['total'] + $this->shipping_charge;
         $order->firstname = $this->firstname;
         $order->lastname = $this->lastname;
         $order->email = $this->email;
@@ -127,10 +148,12 @@ class CheckoutComponent extends Component
         $order->line2 = $this->line2;
         $order->city = $this->city;
         $order->province = $this->province;
-        $order->country = $this->country;
+        $order->country = $selected_country;
         $order->zipcode = $this->zipcode;
         $order->status = 'ordered';
         $order->is_shipping_different = $this->ship_to_different ? 1:0;
+        $order->expedition_id = $exp_id;
+        $order->shipping_charge = $this->shipping_charge;
         $order->save();
 
         foreach (Cart::instance('cart')->content() as $item) {
@@ -278,7 +301,8 @@ class CheckoutComponent extends Component
 
     public function render()
     {
+
         $this->verifyForCheckout();
-        return view('livewire.checkout-component')->layout('layouts.base');
+        return view('livewire.checkout-component',['co'=>Countries::all(), 'expedition'=>Expeditions::all()])->layout('layouts.base');
     }
 }
