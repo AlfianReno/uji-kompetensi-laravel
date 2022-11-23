@@ -49,6 +49,7 @@
 
 
 <x-base-layout>
+
     <main id="main" class="main-site left-sidebar">
 
 		<div class="container">
@@ -76,7 +77,7 @@
 									</fieldset>
 									<fieldset class="wrap-input">
 										<label for="frm-login-pass">Password:</label>
-										<input type="password" id="frm-login-pass" name="password" placeholder="************" required autocomplete="current-password">
+										<input type="password" id="frm-login-pass" name="password" placeholder="************" required autocomplete="current-password"><i class="fa fa-eye" id="togglePassword"></i>
 									</fieldset>
 
 									<fieldset class="wrap-input">
@@ -86,7 +87,7 @@
 										<a class="link-function left-position" href="{{route('password.request')}}" title="Forgotten password?">Forgotten password?</a>
 									</fieldset>
                                     <fieldset class="wrap-input">
-                                        {!! NoCaptcha::renderJs('en', false, 'onCallback') !!}
+                                        {!! NoCaptcha::renderJs('en') !!}
                                         {!! NoCaptcha::display() !!}
                                     </fieldset>
 									<input type="submit" class="btn btn-submit" value="Login" name="submit">
@@ -100,11 +101,35 @@
 		</div><!--end container-->
 
 	</main>
+
+
 </x-base-layout>
 
+
 <script type="text/javascript">
-    var onCallback = function () {
-        alert('Complete captcha to continue register!');
+
+    $('#frm-login-pass').keypress(function(e) {
+    var s = String.fromCharCode( e.which );
+    if ( s.toUpperCase() === s && s.toLowerCase() !== s && !e.shiftKey ) {
+        alert('Your capslock is on!, make sure to disable it if your password is not using Uppercase!');
     }
+
+        const togglePassword = document.querySelector("#togglePassword");
+        const password = document.querySelector("#frm-login-pass");
+
+        togglePassword.addEventListener("click", function () {
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            })
+
+
+
+
+        const form = document.querySelector("form");
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+        });
+
+});
 </script>
 

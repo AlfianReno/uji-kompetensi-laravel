@@ -7225,3 +7225,8 @@ svg{
     position: fixed;
     justify-items: right;
 }
+
+form i {
+    margin-left: -30px;
+    cursor: pointer;
+}

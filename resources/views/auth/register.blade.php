@@ -90,7 +90,7 @@
                                         </a>
                                     </fieldset>
                                     <fieldset class="wrap-input" style="margin-top: 10px;">
-                                        {!! NoCaptcha::renderJs('en', false, 'onCallback') !!}
+                                        {!! NoCaptcha::renderJs('en') !!}
                                         {!! NoCaptcha::display() !!}
                                     </fieldset>
                                     <input type="submit" class="btn btn-sign" value="Register" name="register">
@@ -108,7 +108,11 @@
 </x-base-layout>
 
 <script type="text/javascript">
-    var onCallback = function () {
-        alert('Complete captcha to continue register!');
+
+    $('#frm-reg-pass').keypress(function(e) {
+    var s = String.fromCharCode( e.which );
+    if ( s.toUpperCase() === s && s.toLowerCase() !== s && !e.shiftKey ) {
+        alert('Your capslock is on!, make sure to disable it if your password is not using Uppercase!');
     }
+});
 </script>

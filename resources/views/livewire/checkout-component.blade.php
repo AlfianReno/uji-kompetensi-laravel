@@ -239,12 +239,6 @@
                             <span>Debit / Credit Card</span>
                             <span class="payment-desc">There are many variations of passages of Lorem Ipsum available</span>
                         </label>
-                        <label class="payment-method">
-                            <input name="payment-method" id="payment-method-paypal" value="paypal" type="radio" wire:model="paymentmode">
-                            <span>Paypal</span>
-                            <span class="payment-desc">You can pay with your credit</span>
-                            <span class="payment-desc">card if you don't have a paypal account</span>
-                        </label>
                         @error('paymentmode')
                             <span class="text-danger">{{$message}}</span>
                         @enderror

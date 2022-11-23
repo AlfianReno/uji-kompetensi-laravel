@@ -40,7 +40,7 @@
 						<div class="topbar-menu left-menu">
 							<ul>
 								<li class="menu-item" >
-									<a title="Hotline: (+123) 456 789" href="#" ><span class="icon label-before fa fa-mobile"></span>Hotline: (+123) 456 789</a>
+									<a title="phone-number" href="#" ><span class="icon label-before fa fa-mobile"></span>Hotline: (+62) 8533 6164 385</a>
 								</li>
 							</ul>
 						</div>
@@ -117,6 +117,39 @@
                                                     </form>
                                                 </ul>
                                             </li>
+                                        @elseif (Auth::user()->utype === 'MM')
+                                        <li class="menu-item menu-item-has-children parent" >
+                                            <a title="My Account" href="#">My Account ({{Auth::user()->name}}) <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                            <ul class="submenu curency" >
+                                                <li class="menu-item" >
+                                                    <a title="Dashboard" href="{{  route('admin.dashboard')  }}">Dashboard</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a title="Categories" href="{{route('admin.categories')}}">Categories</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a title="Attributes" href="{{route('admin.attributes')}}">Attributes</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a title="Products" href="{{route('admin.products')}}">All Products</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a title="Sale Setting" href="{{route('admin.sale')}}">Sale Setting</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a title="All Coupon" href="{{route('admin.coupons')}}">All Coupon</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a title="All Orders" href="{{route('admin.orders')}}">All Orders</a>
+                                                </li>
+                                                <li class="menu-item">
+                                                    <a href="{{  route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                                </li>
+                                                <form id="logout-form" action="{{  route('logout')}}" method="post">
+                                                    @csrf
+                                                </form>
+                                            </ul>
+                                        </li>
                                         @else
                                             <li class="menu-item menu-item-has-children parent" >
                                                 <a title="My Account" href="#">My Account ({{Auth::user()->name}}) <i class="fa fa-angle-down" aria-hidden="true"></i></a>
@@ -144,8 +177,8 @@
                                             </li>
                                         @endif
                                     @else
-                                        <li class="menu-item" ><a title="Register or Login" href="{{route('login')}}">Login</a></li>
-                                        <li class="menu-item" ><a title="Register or Login" href="{{route('register')}}">Register</a></li>
+                                        <li class="menu-item" ><a title="Register or Login" href="{{route('login')}}">Sign In</a></li>
+                                        <li class="menu-item" ><a title="Register or Login" href="{{route('register')}}">Sign Up</a></li>
                                     @endif
                                 @endif
 							</ul>
@@ -252,7 +285,7 @@
 </html>
 
 <!--Start of Tawk.to Script-->
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -262,5 +295,5 @@
     s1.setAttribute('crossorigin','*');
     s0.parentNode.insertBefore(s1,s0);
     })();
-    </script>
+    </script> --}}
 <!--End of Tawk.to Script-->

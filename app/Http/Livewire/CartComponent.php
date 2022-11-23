@@ -145,6 +145,7 @@ class CartComponent extends Component
 
     public function render()
     {
+        // Cart::instance('cart')->destroy();
         if(session()->has('coupon')){
             if(Cart::instance('cart')->subtotal() < session()->get('coupon')['cart_value']){
                 session()->forget('coupon');
